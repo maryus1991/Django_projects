@@ -1,2 +1,2 @@
 # django projects repository
-my first projec in django
+my first project in django
