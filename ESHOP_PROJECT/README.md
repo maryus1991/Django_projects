@@ -1,3 +1,3 @@
-# eshop project
+# Eshop project
 
 just a simple eshop 
