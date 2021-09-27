@@ -1,1 +1,3 @@
-# django projects repository
+# eshop project
+
+just a simple eshop 
