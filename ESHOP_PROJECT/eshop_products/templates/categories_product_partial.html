@@ -1,0 +1,114 @@
+ {% load static %}
+
+<h2>دسته بندی محصولات</h2>
+
+
+
+
+ {% load mptt_tags %}
+
+<div class="panel-group category-products" id="accordian">
+ {% recursetree categories %}
+ {% if not node.is_leaf_node or node.is_child_node %}
+ <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title " style="padding: 0;" >
+                <a href="{{ node.get_absolute_url_categories }}"> {{ node.title }} </a>
+                <a  {% if not node.is_leaf_node %} data-toggle="collapse" class="col-sm-2 badge" href="#{{ node.name }}" {% else %} href="{{ node.get_absolute_url_categories }}"{% endif %} >
+                    {% if not node.is_leaf_node %} <span class="pull-left"><i class="fa fa-plus"></i></span><small> </small> {% endif %}
+                </a>
+            </h4>
+        </div>
+        <div id="{{ node.name }}" class="panel-collapse collapse">
+            <div class="panel-body">
+
+                <ul>
+                    {% if not node.is_leaf_node  %}
+
+                    <li><a href="">
+                        {{ children }}
+                    </a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+ </div>
+ {% endif %}
+ {% endrecursetree %}
+
+{% recursetree categories %}
+ {% if node.is_leaf_node %}
+ <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a href="{{ node.get_absolute_url_categories }}"> {{ node.title }} </a>
+                <a  {% if not node.is_leaf_node %} data-toggle="collapse" href="#{{ node.name }}" {% else %} href="{{ node.get_absolute_url_categories }}"{% endif %} >
+                {% if not node.is_leaf_node %} <span class="pull-left"><i class="fa fa-plus"></i></span><small> </small> {% endif %}
+                </a>
+            </h4>
+        </div>
+        <div id="{{ node.name }}" class="panel-collapse collapse">
+            <div class="panel-body">
+
+                <ul>
+                    {% if not node.is_leaf_node  %}
+
+                    <li><a href="">
+                        {{ children }}
+                    </a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+ </div>
+{% endif %}
+{% endrecursetree %}
+
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a href="/product/" >
+                همه
+            </a>
+        </h4>
+    </div>
+ </div>
+
+
+
+    <!-- {% comment %} {% for category in categories %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a href="{{ category.get_absolute_url_categories }}">
+                    {{ category.title }}
+                </a>
+            </h4>
+        </div>
+    </div>
+    {% endfor %}{% endcomment %} -->
+
+<!-- {% comment %}<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                        دسته 1
+                    </a>
+                </h4>
+            </div>
+            <div id="sportswear" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="">محصول 1 </a></li>
+                        <li><a href="">محصول 2 </a></li>
+                        <li><a href="">محصول 3 </a></li>
+                        <li><a href="">محصول 4</a></li>
+                        <li><a href="">محصول 5</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>{% endcomment %} -->
