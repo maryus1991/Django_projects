@@ -1,0 +1,67 @@
+{% extends 'shared/_MainLayout.html' %} {% load static %} {% block title %} محصولات مورد علاقه {% endblock %} {% block body %}
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="/">خانـه</a></li>
+                <li class="active">پرداخت</li>
+            </ol>
+        </div>
+        <!--/breadcrums-->
+        <section id="cart_items">
+
+            {% if favorate != None and favorate_item|length > 0 %}
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">کـالا</td>
+                            <td class="image"></td>
+                            <td class="price">قیمت</td>
+                            <td> افزودن به سبد خرید </td>
+                            <td> حذف از محصولات مورد علاقه </td>
+                            <td> </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for detail in favorate_item %}
+                        <tr>
+                            <td class="cart_product">
+                                <a href="{{ detail.product.get_absolute_url }}"><img src="{{ detail.product.image.url }}" width="110px" height="110" alt=""></a>
+                            </td>
+                            <td style='padding-right: 30px;' class="cart_description">
+                                <h4><a href="{{ detail.product.get_absolute_url }}">{{ detail.product.title }}</a></h4>
+                                <p>شناسـه : {{ detail.product.id }}</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>{{ detail.product.price }} ريال</p>
+                            </td>
+                            <td class="">
+                                <form method="post" action="/order/add_user_order">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="{{ new_order_form.pk.name }}" value='{{ detail.product.id }}' id="id_productid">
+                                    <button type="submit" class="btn btn-fefault cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                افـزودن به سبـد خریـد
+                                            </button>
+                                </form>
+                            </td>
+                            <td style='margin-right: 0px;' class="cart_delete">
+                                <a class="cart_quantity_delete" style='float:left' href="remove_favorate_item/{{ detail.id }}"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+
+            <p class="alert alert-info"> شما هیچ محصولات مورد علاقه را انتخاب نکردید </p>
+            {% endif %}
+
+    </section>
+    <!--/#cart_items-->
+
+
+    {% endblock body %}

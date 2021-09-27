@@ -1,0 +1,14 @@
+bin/*
+venv/lib/*
+.idea/*
+/venv/*
+*.sqlite3
+media_root/*
+static_cdn/media_root/*
+*.xz
+../**
+/__pycache__/*
+.gitignore.save
+.vscode/*
+..gitignore.swp
+*.pyc
